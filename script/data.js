@@ -54,10 +54,10 @@ const loadInfo = async (id) => {
             <div class="card-body items-center text-center max-md:w-fit mx-auto p-3">
                 <h2 class="font-bold max-md:text-xl text-3xl">${word}</h2>
                 <p class="text-xl max-md:text-base font-medium ">Meaning/Pronunciation</p>
-                <p class=" max-md:text-base text-3xl font-semibold">${mean}/${pronun}</p>
+                <p class=" max-md:text-base text-2xl font-semibold">${mean}/${pronun}</p>
                 <div class="flex justify-between items-center w-full">
                     <button class="btn bg-[#e8f3fe]" onclick="openModal(${id})"><i class="fa-solid fa-circle-info"></i></button>
-                    <button class="btn bg-[#e8f3fe]"><i class="fa-solid fa-volume-high"></i></button>
+                    <button class="btn  bg-[#e8f3fe]" onclick="pronounceWord('${info.word}')"><i class="fa-solid fa-volume-high"></i></button>
                 </div>
             </div>
         </div>`;
@@ -125,7 +125,11 @@ const showSynonyms = (synonyms) => {
     });
 };
 
-
+function pronounceWord(word1) {
+    const utterance = new SpeechSynthesisUtterance(word1);
+    utterance.lang = 'en-GB'; 
+    window.speechSynthesis.speak(utterance);
+}
 
 
 loadCategory();
